@@ -5,7 +5,10 @@ const viewLog = []
 
 express()
   .get('/ping', (req, res) => {
-    viewLog.push(req.connection.remoteAddress)
+    const ip = req.connection.remoteAddress
+    if (!viewLog.includes(ip)) {
+      viewLog.push(ip)
+    }
     res.send(JSON.stringify(viewLog))
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
