@@ -1,9 +1,12 @@
 const express = require('express')
+var cors = require('cors')
+
 const PORT = process.env.PORT || 5000
 
 const viewLog = []
 
 express()
+  .use(cors())
   .get('/ping', (req, res) => {
     const ip = req.headers['x-forwarded-for']
     if (!viewLog.includes(ip)) {
