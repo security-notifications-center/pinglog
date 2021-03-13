@@ -9,7 +9,7 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/ping', (req, res) => {
-    viewLog.push(JSON.stringify(req))
+    viewLog.push(req.connection.remoteAddress)
     res.end(viewLog)
   })
   .get('/', (req, res) => res.render('pages/index'))
