@@ -5,7 +5,7 @@ const viewLog = []
 
 express()
   .get('/ping', (req, res) => {
-    const ip = req.connection.remoteAddress
+    const ip = req.headers['x-forwarded-for']
     if (!viewLog.includes(ip)) {
       viewLog.push(ip)
     }
